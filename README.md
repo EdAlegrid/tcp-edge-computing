@@ -1,11 +1,11 @@
 
-## Using M2M to provision client/server edge devices communicating through a private local area network
+## Using M2M to provision publish/subscribe edge devices communicating through a private local area network
 
 <br>
 
-In this example, we will setup client/server endpoint devices communicating to each other through a local area network using tcp. 
+In this example, we will setup pub/sub endpoint devices communicating with each other through a local area network using tcp. 
 
-The devices are also accessible from the cloud through an internet connection so you can setup, configure and develop your applications from a browser interface. 
+The devices are also accessible from the cloud so you can configure and develop your applications from a browser interface. 
 
 ![](assets/m2m-edge.svg)
 
@@ -41,9 +41,11 @@ edge.createServer(port, host, (server) => {
 });
 
 /***
- * m2m device server
+ * m2m device server 1
  */
-let device = createDevice(100);
+ 
+let id = 100; // simply create your unique deviceId instead of ip address
+let device = createDevice(id);
 
 device.connect(() => {
     device.publish('m2m-voltage', (data) => {
@@ -92,7 +94,9 @@ edge.createServer(port, host, (server) => {
 /***
  * m2m device server
  */
-let device = createDevice(200);
+ 
+let id = 200;  
+let device = createDevice(id);
 
 device.connect(() => {
     device.publish('m2m-temperature', (data) => {
